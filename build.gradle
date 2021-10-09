@@ -42,4 +42,5 @@ ext {
     // Add Dependencies
     roomVersion = "2.3.0"
     datastoreVersion = "1.0.0"
+    navigationComposeVersion = "2.4.0-alpha10"
 }
