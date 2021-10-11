@@ -9,7 +9,7 @@ import kr.co.bepo.todocompose.util.Constants.LIST_ARGUMENT_KEY
 import kr.co.bepo.todocompose.util.Constants.LIST_SCREEN
 
 fun NavGraphBuilder.listComposable(
-    navigationToTaskScreen: (Int) -> Unit
+    navigationToTaskScreen: (taskId: Int) -> Unit
 ) {
     composable(
         route = LIST_SCREEN,
