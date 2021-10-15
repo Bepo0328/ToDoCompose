@@ -18,20 +18,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import kr.co.bepo.todocompose.data.models.Priority
 import kr.co.bepo.todocompose.data.models.ToDoTask
 import kr.co.bepo.todocompose.ui.theme.*
+import kr.co.bepo.todocompose.util.RequestState
 
 @ExperimentalMaterialApi
 @Composable
 fun ListContent(
-    tasks: List<ToDoTask>,
+    tasks: RequestState<List<ToDoTask>>,
     navigationToTaskScreen: (taskId: Int) -> Unit
 ) {
-    if (tasks.isEmpty()) {
-        EmptyContent()
-    } else {
-        DisplayTasks(
-            tasks = tasks,
-            navigationToTaskScreen = navigationToTaskScreen
-        )
+    if (tasks is RequestState.Success) {
+        if (tasks.data.isEmpty()) {
+            EmptyContent()
+        } else {
+            DisplayTasks(
+                tasks = tasks.data,
+                navigationToTaskScreen = navigationToTaskScreen
+            )
+        }
     }
 }
 
