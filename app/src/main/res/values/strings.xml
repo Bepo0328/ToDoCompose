@@ -5,6 +5,8 @@
     <string name="list_screen_title">Tasks</string>
     <string name="search_placeholder">Search</string>
     <string name="empty_content">No Tasks Found.</string>
+    <string name="add_task">Add Task</string>
+    <string name="back_arrow">Back Arrow</string>
 
     <!-- action -->
     <string name="search_action">Search Tasks</string>
