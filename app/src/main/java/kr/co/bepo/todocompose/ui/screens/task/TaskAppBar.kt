@@ -4,10 +4,15 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import kr.co.bepo.todocompose.R
+import kr.co.bepo.todocompose.data.models.Priority
+import kr.co.bepo.todocompose.data.models.ToDoTask
 import kr.co.bepo.todocompose.ui.theme.topAppBarBackgroundColor
 import kr.co.bepo.todocompose.ui.theme.topAppBarContentColor
 import kr.co.bepo.todocompose.util.Action
@@ -69,9 +74,87 @@ fun AddAction(
 }
 
 @Composable
+fun ExistingTaskAppBar(
+    selectedTask: ToDoTask,
+    navigateToListScreen: (Action) -> Unit
+) {
+    TopAppBar(
+        navigationIcon = {
+            CloseAction(onCloseClicked = navigateToListScreen)
+        },
+        title = {
+            Text(
+                text = selectedTask.title,
+                color = MaterialTheme.colors.topAppBarContentColor,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+        },
+        backgroundColor = MaterialTheme.colors.topAppBarBackgroundColor,
+        actions = {
+            DeleteAction(onDeleteClicked = navigateToListScreen)
+            UpdateAction(onUpdateClicked = navigateToListScreen)
+        }
+    )
+}
+
+@Composable
+fun CloseAction(
+    onCloseClicked: (Action) -> Unit
+) {
+    IconButton(onClick = { onCloseClicked(Action.NO_ACTION) }) {
+        Icon(
+            imageVector = Icons.Filled.Close,
+            contentDescription = stringResource(id = R.string.close_icon),
+            tint = MaterialTheme.colors.topAppBarContentColor
+        )
+    }
+}
+
+@Composable
+fun DeleteAction(
+    onDeleteClicked: (Action) -> Unit
+) {
+    IconButton(onClick = { onDeleteClicked(Action.DELETE) }) {
+        Icon(
+            imageVector = Icons.Filled.Delete,
+            contentDescription = stringResource(id = R.string.delete_icon),
+            tint = MaterialTheme.colors.topAppBarContentColor
+        )
+    }
+}
+
+@Composable
+fun UpdateAction(
+    onUpdateClicked: (Action) -> Unit
+) {
+    IconButton(onClick = { onUpdateClicked(Action.UPDATE) }) {
+        Icon(
+            imageVector = Icons.Filled.Check,
+            contentDescription = stringResource(id = R.string.update_icon),
+            tint = MaterialTheme.colors.topAppBarContentColor
+        )
+    }
+}
+
+@Composable
 @Preview
 fun NewTaskAppBarPreview() {
     NewTaskAppBar(
+        navigateToListScreen = {}
+    )
+}
+
+@Composable
+@Preview
+fun ExistingTaskAppBarPreview() {
+    ExistingTaskAppBar(
+        selectedTask = ToDoTask(
+            id = 0,
+            title = "Test1",
+            description = "test1",
+            priority = Priority.LOW
+        ),
         navigateToListScreen = {}
     )
 }
