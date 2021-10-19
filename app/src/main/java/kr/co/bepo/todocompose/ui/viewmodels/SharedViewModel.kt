@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 import kr.co.bepo.todocompose.data.models.Priority
 import kr.co.bepo.todocompose.data.models.ToDoTask
 import kr.co.bepo.todocompose.data.repositories.ToDoRepository
+import kr.co.bepo.todocompose.util.Constants.MAX_TITLE_LENGTH
 import kr.co.bepo.todocompose.util.RequestState
 import kr.co.bepo.todocompose.util.SearchAppBarState
 import javax.inject.Inject
@@ -72,6 +73,12 @@ class SharedViewModel @Inject constructor(
             title.value = ""
             description.value = ""
             priority.value = Priority.LOW
+        }
+    }
+
+    fun updateTitle(newTitle: String) {
+        if (newTitle.length < MAX_TITLE_LENGTH) {
+            title.value = newTitle
         }
     }
 }
