@@ -1,6 +1,5 @@
 package kr.co.bepo.todocompose.ui.screens.list
 
-import android.util.Log
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -25,9 +24,13 @@ fun ListScreen(
         sharedViewModel.getAllTasks()
     }
 
+    val action by sharedViewModel.action
+
     val allTasks by sharedViewModel.allTasks.collectAsState()
     val searchAppBarState: SearchAppBarState by sharedViewModel.searchAppBarState
     val searchTextState: String by sharedViewModel.searchTexState
+
+    sharedViewModel.handleDatabaseActions(action = action)
 
     Scaffold(
         topBar = {
