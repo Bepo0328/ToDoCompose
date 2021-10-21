@@ -55,7 +55,9 @@ fun ListAppBar(
                         SearchAppBarState.CLOSED
                     sharedViewModel.searchTexState.value = ""
                 },
-                onSearchClicked = {}
+                onSearchClicked = {
+                    sharedViewModel.searchDatabase(searchQuery = it)
+                }
             )
         }
     }
@@ -71,7 +73,8 @@ fun DefaultListAppBar(
         title = {
             Text(
                 text = stringResource(id = R.string.list_screen_title),
-                color = MaterialTheme.colors.topAppBarContentColor)
+                color = MaterialTheme.colors.topAppBarContentColor
+            )
         },
         actions = {
             ListAppBarActions(
