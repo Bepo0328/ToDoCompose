@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kr.co.bepo.todocompose.data.models.Priority
 import kr.co.bepo.todocompose.data.models.ToDoTask
+import kr.co.bepo.todocompose.data.repositories.DataStoreRepository
 import kr.co.bepo.todocompose.data.repositories.ToDoRepository
 import kr.co.bepo.todocompose.util.Action
 import kr.co.bepo.todocompose.util.Constants.MAX_TITLE_LENGTH
@@ -21,7 +22,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SharedViewModel @Inject constructor(
-    private val repository: ToDoRepository
+    private val repository: ToDoRepository,
+    private val dataStoreRepository: DataStoreRepository
 ) : ViewModel() {
 
     val action: MutableState<Action> = mutableStateOf(Action.NO_ACTION)
