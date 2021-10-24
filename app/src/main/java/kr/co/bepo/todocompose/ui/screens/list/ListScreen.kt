@@ -1,5 +1,6 @@
 package kr.co.bepo.todocompose.ui.screens.list
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -13,6 +14,7 @@ import kr.co.bepo.todocompose.ui.viewmodels.SharedViewModel
 import kr.co.bepo.todocompose.util.Action
 import kr.co.bepo.todocompose.util.SearchAppBarState
 
+@ExperimentalAnimationApi
 @ExperimentalMaterialApi
 @Composable
 fun ListScreen(

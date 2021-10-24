@@ -1,5 +1,6 @@
 package kr.co.bepo.todocompose.navigation.destinations
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavGraphBuilder
@@ -12,6 +13,7 @@ import kr.co.bepo.todocompose.util.Constants.LIST_ARGUMENT_KEY
 import kr.co.bepo.todocompose.util.Constants.LIST_SCREEN
 import kr.co.bepo.todocompose.util.toAction
 
+@ExperimentalAnimationApi
 @ExperimentalMaterialApi
 fun NavGraphBuilder.listComposable(
     navigationToTaskScreen: (taskId: Int) -> Unit,
