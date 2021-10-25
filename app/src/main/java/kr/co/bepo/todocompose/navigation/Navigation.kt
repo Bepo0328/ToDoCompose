@@ -7,9 +7,10 @@ import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import kr.co.bepo.todocompose.navigation.destinations.listComposable
+import kr.co.bepo.todocompose.navigation.destinations.splashComposable
 import kr.co.bepo.todocompose.navigation.destinations.taskComposable
 import kr.co.bepo.todocompose.ui.viewmodels.SharedViewModel
-import kr.co.bepo.todocompose.util.Constants.LIST_SCREEN
+import kr.co.bepo.todocompose.util.Constants.SPLASH_SCREEN
 
 @ExperimentalAnimationApi
 @ExperimentalMaterialApi
@@ -24,14 +25,17 @@ fun SetupNavigation(
 
     NavHost(
         navController = navController,
-        startDestination = LIST_SCREEN
+        startDestination = SPLASH_SCREEN
     ) {
+        splashComposable(
+            navigationToListScreen = screen.splash
+        )
         listComposable(
-            navigationToTaskScreen = screen.task,
+            navigationToTaskScreen = screen.list,
             sharedViewModel = sharedViewModel
         )
         taskComposable(
-            navigationToListScreen = screen.list,
+            navigationToListScreen = screen.task,
             sharedViewModel = sharedViewModel
         )
     }
