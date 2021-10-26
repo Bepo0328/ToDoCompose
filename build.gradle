@@ -44,4 +44,5 @@ ext {
     datastoreVersion = "1.0.0"
     hiltCompilerVersion = "1.0.0"
     navigationComposeVersion = "2.4.0-alpha10"
+    accompanistNavigationAnimationVersion = "0.20.0"
 }
