@@ -26,7 +26,6 @@ import kr.co.bepo.todocompose.ui.theme.*
 import kr.co.bepo.todocompose.ui.viewmodels.SharedViewModel
 import kr.co.bepo.todocompose.util.Action
 import kr.co.bepo.todocompose.util.SearchAppBarState
-import kr.co.bepo.todocompose.util.TrailingIconState
 
 
 @Composable
@@ -222,9 +221,6 @@ fun SearchAppBar(
     onCloseClicked: () -> Unit,
     onSearchClicked: (String) -> Unit
 ) {
-    var trailingIconState by remember {
-        mutableStateOf(TrailingIconState.READY_TO_DELETE)
-    }
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -265,19 +261,10 @@ fun SearchAppBar(
             trailingIcon = {
                 IconButton(
                     onClick = {
-                        when (trailingIconState) {
-                            TrailingIconState.READY_TO_DELETE -> {
-                                onTextChange("")
-                                trailingIconState = TrailingIconState.READY_TO_CLOSE
-                            }
-                            TrailingIconState.READY_TO_CLOSE -> {
-                                if (text.isNotEmpty()) {
-                                    onTextChange("")
-                                } else {
-                                    onCloseClicked()
-                                    trailingIconState = TrailingIconState.READY_TO_DELETE
-                                }
-                            }
+                        if (text.isNotEmpty()) {
+                            onTextChange("")
+                        } else {
+                            onCloseClicked()
                         }
                     }
                 ) {
